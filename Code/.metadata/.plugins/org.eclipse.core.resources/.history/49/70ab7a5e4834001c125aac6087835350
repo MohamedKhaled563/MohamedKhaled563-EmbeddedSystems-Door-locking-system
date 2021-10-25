@@ -1,0 +1,34 @@
+/*
+ * app.c
+ *
+ *  Created on: Oct 23, 2021
+ *      Author: fared
+ */
+#include "gpio.h"
+#include "lcd.h"
+#include "uart.h"
+#define CONTROL_MCU_READY 0x10
+#define HMI_MCU_READY 0xff
+#define COMPARE_RESULT_TRUE 0x01
+#define COMPARE_RESULT_FALSE 0x00
+int main ( void )
+{
+	UART_init(9600);
+//
+//	LCD_init();
+//	LCD_init();
+//	LCD_init();
+
+
+	while(UART_recieveByte() != CONTROL_MCU_READY);
+	GPIO_setupPinDirection(PORTC_ID, PIN0_ID, PIN_OUTPUT);
+	GPIO_writePin(PORTC_ID, PIN0_ID, LOGIC_HIGH);
+
+	UART_sendByte('a');
+
+	while (1)
+	{
+
+	}
+	return 0;
+}

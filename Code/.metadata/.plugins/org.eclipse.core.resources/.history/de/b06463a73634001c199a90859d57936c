@@ -1,0 +1,19 @@
+/*
+ *
+ * Module: Door locking control application.
+ *
+ * File Name: door_locking_control.c
+ *
+ * Description: Source file of controlMCU application.
+ *
+ * Author: Mohamed Khaled.
+ *
+ */
+
+int main ( void )
+{
+
+
+
+	return 0;
+}

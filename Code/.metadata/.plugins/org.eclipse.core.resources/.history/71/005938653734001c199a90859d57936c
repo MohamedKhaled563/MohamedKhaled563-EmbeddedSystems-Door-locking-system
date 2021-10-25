@@ -1,0 +1,33 @@
+/*
+ *
+ * Module: Door locking control application.
+ *
+ * File Name: door_locking_control.c
+ *
+ * Description: Source file of controlMCU application.
+ *
+ * Author: Mohamed Khaled.
+ *
+ */
+#include "uart.h"
+
+int main ( void )
+{
+	UART_init(9600);
+
+	uint8 password[5];
+	uint8 reEnteredPassword[5];
+
+	/* Sending password */
+	for (uint8 i = 0; i < 5; i++)
+	{
+		password[i] = UART_recieveByte();
+	}
+	/* Sending reentered password */
+	for (uint8 i = 0; i < 5; i++)
+	{
+		reEnteredPassword[i] = UART_recieveByte();
+	}
+
+	return 0;
+}

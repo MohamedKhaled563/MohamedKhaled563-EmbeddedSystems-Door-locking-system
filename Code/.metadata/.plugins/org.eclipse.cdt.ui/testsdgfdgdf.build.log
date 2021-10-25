@@ -1,0 +1,20 @@
+23:52:15 **** Incremental Build of configuration Debug for project testsdgfdgdf ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 testsdgfdgdf.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    8042 bytes (49.1% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:52:16 Build Finished. 0 errors, 0 warnings. (took 219ms)
+

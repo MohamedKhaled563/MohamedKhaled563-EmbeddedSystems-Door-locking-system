@@ -1,0 +1,22 @@
+/*
+ * app.c
+ *
+ *  Created on: Oct 23, 2021
+ *      Author: fared
+ */
+#include "gpio.h"
+
+#include "uart.h"
+
+int main ( void )
+{
+	LCD_init();
+
+	UART_init(9600);
+
+	while (1)
+	{
+
+	}
+	return 0;
+}

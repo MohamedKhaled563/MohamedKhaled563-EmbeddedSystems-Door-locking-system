@@ -1,0 +1,95 @@
+/*
+ *
+ * Module: Door locking hmi application.
+ *
+ * File Name: door_locking_hmi.c
+ *
+ * Description: Source file of hmiMCU application.
+ *
+ * Author: Mohamed Khaled.
+ *
+ */
+#define F_CPU 8000000
+#define CONTROL_MCU_READY 0x10
+#define HMI_MCU_READY 0xff
+#define COMPARE_RESULT_TRUE 0x01
+#define COMPARE_RESULT_FALSE 0x00
+
+#include <util/delay.h>
+#include "lcd.h"
+#include "gpio.h"
+#include "uart.h"
+
+typedef enum {
+	PASS_LENGTH_ERROR, PASS_REENTERING_ERROR
+} Error;
+
+
+void requestNewPassword( uint8* password, uint8* reEnteredPassword );
+void displayError (Error error);
+
+
+int main ( void )
+{
+	UART_init(9600);
+
+	LCD_init();
+//	uint8 password[5];
+//	uint8 reEnteredPassword[5];
+//
+//	requestNewPassword(password, reEnteredPassword);
+//	/////////////////////////////////////////////////////////////////////
+//	for(uint8 i = 0; i < 5; i++)
+//	{
+//		LCD_intgerToString(password[i]);
+//	}
+//	for(uint8 i = 0; i < 5; i++)
+//	{
+//		LCD_intgerToString(reEnteredPassword[i]);
+//	}
+//	/////////////////////////////////////////////////////////////////////
+
+
+//	_delay_ms(1000);
+	while(UART_recieveByte() != CONTROL_MCU_READY);
+	UART_sendByte('a');
+//	/* Sending password */
+//	for (uint8 i = 0; i < 5; i++)
+//	{
+//		UART_sendByte(password[i]);
+//	}
+//	/* Sending reentered password */
+//	for (uint8 i = 0; i < 5; i++)
+//	{
+//		UART_sendByte(reEnteredPassword[i]);
+//	}
+
+//	UART_sendByte(HMI_MCU_READY);
+//	uint8 compareResult = UART_recieveByte();
+//	while(UART_recieveByte() != CONTROL_MCU_READY);
+//	UART_sendByte(password[0]);
+////	UART_sendByte(reEnteredPassword[0]);
+//	//UART_sendByte(HMI_MCU_READY);
+//	uint8 compareResult = UART_recieveByte();
+
+//	if(compareResult)
+//	{
+//		LCD_clearScreen();
+//		LCD_moveCursor(0, 0);
+//		LCD_displayString("Match");
+//	}
+//	else
+//	{
+//		LCD_clearScreen();
+//		LCD_moveCursor(0, 0);
+//		LCD_displayString("Mis Match");
+//	}
+
+	while(1)
+	{
+
+	}
+
+	return 0;
+}
+
