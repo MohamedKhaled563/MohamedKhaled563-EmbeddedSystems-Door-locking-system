@@ -11,12 +11,13 @@
  */
 #define F_CPU 8000000
 
+#include <util/delay.h>
 #include "uart.h"
 #include "std_types.h"
 #include "external_eeprom.h"
 #include "gpio.h"
 #include "dc_motor.h"
-#include <util/delay.h>
+#include "buzzer.h"
 
 #define CONTROL_MCU_READY 0x10
 #define HMI_MCU_READY 0xff
@@ -53,8 +54,15 @@ int main ( void )
 	/* Delay to let UART in the other MCU to be initialized */
 	EEPROM_init();
 	_delay_ms(1);
-	UART_init(9600);
+	UART_ConfigType config = {9600,BITS_8,NO_PARITY,ONE_STOP_BIT};
+	UART_init(&config);
 	DcMotor_Init();
+
+	BUZZER_Init();
+	BUZZER_On();
+	_delay_ms(1000);
+	BUZZER_Off();
+
 
 	while(1)
 	{

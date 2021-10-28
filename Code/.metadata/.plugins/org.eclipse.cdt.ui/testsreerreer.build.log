@@ -1,4 +1,4 @@
-23:03:03 **** Incremental Build of configuration Debug for project testsreerreer ****
+12:02:49 **** Incremental Build of configuration Debug for project testsreerreer ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 testsreerreer.elf
@@ -16,5 +16,5 @@ Data:         14 bytes (1.4% Full)
 Finished building: sizedummy
  
 
-23:03:04 Build Finished. 0 errors, 0 warnings. (took 206ms)
+12:02:49 Build Finished. 0 errors, 0 warnings. (took 216ms)
 

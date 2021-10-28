@@ -25,7 +25,7 @@
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(uint32 baud_rate)
+void UART_init( UART_ConfigType* config )
 {
 	uint16 ubrr_value = 0;
 
@@ -38,23 +38,41 @@ void UART_init(uint32 baud_rate)
 	 * UDRIE = 0 Disable USART Data Register Empty Interrupt Enable
 	 * RXEN  = 1 Receiver Enable
 	 * RXEN  = 1 Transmitter Enable
-	 * UCSZ2 = 0 For 8-bit data mode
-	 * RXB8 & TXB8 not used for 8-bit data mode
+	 * UCSZ2 = 0 initially and i will change it later while i select the data bits.
+	 * RXB8 & TXB8 not used for 8-bit data mode /////////
 	 ***********************************************************************/ 
 	UCSRB = (1<<RXEN) | (1<<TXEN);
 	
 	/************************** UCSRC Description **************************
 	 * URSEL   = 1 The URSEL must be one when writing the UCSRC
 	 * UMSEL   = 0 Asynchronous Operation
-	 * UPM1:0  = 00 Disable parity bit
-	 * USBS    = 0 One stop bit
-	 * UCSZ1:0 = 11 For 8-bit data mode
+	 * UPM1:0  = inserted at bits 4:5 according to configurations
+	 * USBS    = inserted according to configurations
+	 * UCSZ1:0 = 11 For 8-bit data mode /////////////////////
 	 * UCPOL   = 0 Used with the Synchronous operation only
 	 ***********************************************************************/ 	
-	UCSRC = (1<<URSEL) | (1<<UCSZ0) | (1<<UCSZ1); 
+	/* Insert the value of parity type in bits 5:4, and number of stop bits according to configurations.*/
+	UCSRC = (1<<URSEL) | ((UCSRC&~(0x30))|((config->parity)<<4)) | ((config->stopBits)<<USBS);
+
+	/* Configure registers according to required data bits*/
+	switch(config->dataLength)
+	{
+	case BITS_5:
+	case BITS_6:
+	case BITS_7:
+	case BITS_8:
+		/* Keep UCSZ2 at UCSRB register 0 as it is and insert number of bits on UCSRC register at first 2 bits.*/
+		UCSRC = (UCSRC&~(0x03))|(config->dataLength);
+		break;
+	case BITS_9:
+		/* Set UCSZ2 at UCSRB register to 1 and insert 0b11 at first 2 bits.*/
+		UCSRB |= (1<<UCSZ2);
+		UCSRC |= 0x03;
+		break;
+	}
 	
-	/* Calculate the UBRR register value */
-	ubrr_value = (uint16)(((F_CPU / (baud_rate * 8UL))) - 1);
+	/* Calculate the UBRR register value according to configurations */
+	ubrr_value = (uint16)(((F_CPU / (config->bitRate * 8UL))) - 1);
 
 	/* First 8 bits from the BAUD_PRESCALE inside UBRRL and last 4 bits in UBRRH*/
 	UBRRH = ubrr_value>>8;

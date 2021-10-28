@@ -28,10 +28,26 @@
 #define TWI_MR_DATA_ACK   0x50 /* Master received data and send ACK to slave. */
 #define TWI_MR_DATA_NACK  0x58 /* Master received data but doesn't send ACK to slave. */
 
+
+/*******************************************************************************
+ *                               User Defined Types                            *
+ *******************************************************************************/
+/*
+ * Description:
+ * Configuration for TWI to configure bit rate and address of the device when it is
+ * behaves as a slave device.
+ */
+typedef struct
+{
+	uint32 bitRate;
+	uint8 address;
+} TWI_ConfigType;
+
+
 /*******************************************************************************
  *                      Functions Prototypes                                   *
  *******************************************************************************/
-void TWI_init(void);
+void TWI_init( TWI_ConfigType* config );
 void TWI_start(void);
 void TWI_stop(void);
 void TWI_writeByte(uint8 data);

@@ -14,9 +14,8 @@
 #include <util/delay.h>
 void EEPROM_init()
 {
-	TWI_init();
-//	EEPROM_writeByte(0,0);
-//	_delay_ms(10);
+	TWI_ConfigType config = { 400000, 0x01 };
+	TWI_init(&config);
 }
 
 uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)

@@ -15,15 +15,20 @@
 #include "common_macros.h"
 #include <avr/io.h>
 
-void TWI_init(void)
+void TWI_init( TWI_ConfigType* config )
 {
-    /* Bit Rate: 400.000 kbps using zero pre-scaler TWPS=00 and F_CPU=8Mhz */
-    TWBR = 0x02;
+	/*
+	 * F_SCL = (F_CPU)/(16 + 2 * (TWBR) * 4 ^ (TWPS))
+	 * TWPS  =00
+	 * F_SCL = F_CPU / (16 + 2 * TWBR)
+	 * TWBR = (F_CPU/F_SCL-16)/(2)
+	 */
+	TWBR = (F_CPU / config->bitRate - 16)/(2);
 	TWSR = 0x00;
 	
-    /* Two Wire Bus address my address if any master device want to call me: 0x1 (used in case this MC is a slave device)
+    /* Two Wire Bus address my address if any master device want to call me: (used in case this MC is a slave device)
        General Call Recognition: Off */
-    TWAR = 0b00000010; // my address = 0x01 :) 
+    TWAR = (config->address) << 1;
 	
     TWCR = (1<<TWEN); /* enable TWI */
 }

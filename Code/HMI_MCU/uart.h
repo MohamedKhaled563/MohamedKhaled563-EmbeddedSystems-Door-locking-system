@@ -6,7 +6,7 @@
  *
  * Description: Header file for the UART AVR driver
  *
- * Author: Mohamed Tarek
+ * Author: Mohamed Khaled.
  *
  *******************************************************************************/
 
@@ -16,7 +16,50 @@
 #include "std_types.h"
 
 /*******************************************************************************
- *                      Functions Prototypes                                   *
+ *                               User Defined Types                            *
+ *******************************************************************************/
+/*
+ * Description:
+ * Enum for selecting number of stop bits in UART frame.
+ */
+typedef enum
+{
+	ONE_STOP_BIT, TWO_STOP_BITS
+} UART_StopBits;
+/*
+ * Description:
+ * Enum for selecting type of parity in UART frame.
+ */
+typedef enum
+{
+	NO_PARITY, EVEN_PARITY = 2, ODD_PARITY
+} UART_ParityType;
+/*
+ * Description:
+ * Specify the number of bits required to be transmitted in one frame.
+ */
+typedef enum
+{
+	BITS_5, BITS_6, BITS_7, BITS_8, BITS_9
+} UART_BitLength;
+/*
+ * Description:
+ * Configuration structure of UART module to select:
+ *  - Number of stop bits
+ *  - Type of parity check
+ *  - Bit rate
+ *  - Length of data in UART frame.
+ */
+typedef struct
+{
+	uint16 bitRate;
+	UART_BitLength dataLength; /*5, 6, 7, 8 or 9 bits*/
+	UART_ParityType parity;
+	UART_StopBits stopBits;
+} UART_ConfigType;
+
+/*******************************************************************************
+ *                             Functions Prototypes                            *
  *******************************************************************************/
 
 /*
@@ -26,7 +69,7 @@
  * 2. Enable the UART.
  * 3. Setup the UART baud rate.
  */
-void UART_init(uint32 baud_rate);
+void UART_init( UART_ConfigType* config );
 
 /*
  * Description :

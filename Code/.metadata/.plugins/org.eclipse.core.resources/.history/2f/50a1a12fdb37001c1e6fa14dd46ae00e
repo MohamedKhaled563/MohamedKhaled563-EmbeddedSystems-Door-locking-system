@@ -1,0 +1,19 @@
+/*
+ *
+ * Module: Buzzer.
+ *
+ * File Name: buzzer.h
+ *
+ * Description: Header file of buzzer module.
+ *
+ * Author: Mohamed Khaled.
+ *
+ */
+
+
+#ifndef BUZZER_H_
+#define BUZZER_H_
+
+
+
+#endif /* BUZZER_H_ */
