@@ -11,6 +11,13 @@
  *******************************************************************************/
 #include "external_eeprom.h"
 #include "twi.h"
+#include <util/delay.h>
+void EEPROM_init()
+{
+	TWI_init();
+//	EEPROM_writeByte(0,0);
+//	_delay_ms(10);
+}
 
 uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)
 {

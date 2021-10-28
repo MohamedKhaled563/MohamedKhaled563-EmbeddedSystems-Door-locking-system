@@ -1,107 +1,78 @@
-/*
+ /******************************************************************************
  *
  * Module: GPIO
  *
  * File Name: gpio.c
  *
- * Description: Source file for AVR GPIO driver.
+ * Description: Source file for the AVR GPIO driver
  *
- * Author: Mohamed Khaled
+ * Author: Mohamed Tarek
  *
- */
+ *******************************************************************************/
 
-
-/***********************************************************************
- *                      Include Module header file                      *
- ***********************************************************************/
 #include "gpio.h"
+#include "common_macros.h" /* To use the macros like SET_BIT */
+#include "avr/io.h" /* To use the IO Ports Registers */
 
-
-
-/***********************************************************************
- *              Include the other required header files                 *
- ***********************************************************************/
-#include <avr/io.h> /* To use IO registers */
-#include "common_macros.h" /* To use macros like SET_BIT */
-
-
-
-/***********************************************************************
- *                            Global Variables                          *
- ***********************************************************************/
-
-
-
-/***********************************************************************
- *                      Local Functions Prototypes                      *
- ***********************************************************************/
-
-
-
-
-/***********************************************************************
- *                          Functions Definitions                       *
- ***********************************************************************/
 /*
- * Description:
- * This function is used to setup pin direction
- * It requires the port number and pin number and the required direction for the pin.
- * If the port number or pin number are not correct, the function will not handle the request.
+ * Description :
+ * Setup the direction of the required pin input/output.
+ * If the input port number or pin number are not correct, The function will not handle the request.
  */
-void GPIO_setupPinDirection(uint8 a_portID, uint8 a_pinID, PinDirectionType a_direction)
+void GPIO_setupPinDirection(uint8 port_num, uint8 pin_num, GPIO_PinDirectionType direction)
 {
-	/*If the port number or pin number are not correct, the function will not handle the request.*/
-	if(a_portID >= NUMBER_OF_PORTS || a_pinID >= NUMBER_OF_PINS_PER_PORT)
+	/*
+	 * Check if the input port number is greater than NUM_OF_PINS_PER_PORT value.
+	 * Or if the input pin number is greater than NUM_OF_PINS_PER_PORT value.
+	 * In this case the input is not valid port/pin number
+	 */
+	if((pin_num >= NUM_OF_PINS_PER_PORT) || (port_num >= NUM_OF_PORTS))
 	{
-		return;
+		/* Do Nothing */
 	}
 	else
 	{
-		/*
-		 * Select the correct register based on port
-		 * If required direction is input, clear bit in the port DDR register
-		 * If required direction is output, set bit in the port DDR register
-		 */
-		switch(a_portID)
+		/* Setup the pin direction as required */
+		switch(port_num)
 		{
 		case PORTA_ID:
-			if(a_direction == PIN_INPUT)
+			if(direction == PIN_OUTPUT)
 			{
-				CLEAR_BIT(DDRA, a_pinID);
+				SET_BIT(DDRA,pin_num);
 			}
 			else
 			{
-				SET_BIT(DDRA, a_pinID);
+				CLEAR_BIT(DDRA,pin_num);
 			}
 			break;
 		case PORTB_ID:
-			if(a_direction == PIN_INPUT)
+			if(direction == PIN_OUTPUT)
 			{
-				CLEAR_BIT(DDRB, a_pinID);
+				SET_BIT(DDRB,pin_num);
 			}
 			else
 			{
-				SET_BIT(DDRB, a_pinID);
+				CLEAR_BIT(DDRB,pin_num);
 			}
 			break;
 		case PORTC_ID:
-			if(a_direction == PIN_INPUT)
+			if(direction == PIN_OUTPUT)
 			{
-				CLEAR_BIT(DDRC, a_pinID);
+				SET_BIT(DDRC,pin_num);
 			}
 			else
 			{
-				SET_BIT(DDRC, a_pinID);
+				CLEAR_BIT(DDRC,pin_num);
 			}
 			break;
 		case PORTD_ID:
-			if(a_direction == PIN_INPUT)
+			if(direction == PIN_OUTPUT)
 			{
-				CLEAR_BIT(DDRD, a_pinID);
+				SET_BIT(DDRD,pin_num);
 			}
 			else
 			{
-				SET_BIT(DDRD, a_pinID);
+				CLEAR_BIT(DDRD,pin_num);
 			}
 			break;
 		}
@@ -109,65 +80,65 @@ void GPIO_setupPinDirection(uint8 a_portID, uint8 a_pinID, PinDirectionType a_di
 }
 
 /*
- * Description:
- * This function is used to write LOGIC_HIGH or LOGIC_LOW on certain pin.
- * It requires port number and pin number and the required value to be written.
- * If the port number or pin number are not correct, the function will not handle the request.
+ * Description :
+ * Write the value Logic High or Logic Low on the required pin.
+ * If the input port number or pin number are not correct, The function will not handle the request.
+ * If the pin is input, this function will enable/disable the internal pull-up resistor.
  */
-void GPIO_writePin(uint8 a_portID, uint8 a_pinID, boolean a_value)
+void GPIO_writePin(uint8 port_num, uint8 pin_num, uint8 value)
 {
-	/*If the port number or pin number are not correct, the function will not handle the request.*/
-	if(a_portID >= NUMBER_OF_PORTS || a_pinID >= NUMBER_OF_PINS_PER_PORT)
+	/*
+	 * Check if the input port number is greater than NUM_OF_PINS_PER_PORT value.
+	 * Or if the input pin number is greater than NUM_OF_PINS_PER_PORT value.
+	 * In this case the input is not valid port/pin number
+	 */
+	if((pin_num >= NUM_OF_PINS_PER_PORT) || (port_num >= NUM_OF_PORTS))
 	{
-		return;
+		/* Do Nothing */
 	}
 	else
 	{
-		/*
-		 * Select the correct register based on port
-		 * If required value is FALSE, clear bit in the port PORT register
-		 * If required value is TRUE, set bit in the port PORT register
-		 */
-		switch(a_portID)
+		/* Write the pin value as required */
+		switch(port_num)
 		{
 		case PORTA_ID:
-			if(a_value == LOGIC_HIGH)
+			if(value == LOGIC_HIGH)
 			{
-				SET_BIT(PORTA, a_pinID);
+				SET_BIT(PORTA,pin_num);
 			}
 			else
 			{
-				CLEAR_BIT(PORTA, a_pinID);
+				CLEAR_BIT(PORTA,pin_num);
 			}
 			break;
 		case PORTB_ID:
-			if(a_value == LOGIC_HIGH)
+			if(value == LOGIC_HIGH)
 			{
-				SET_BIT(PORTB, a_pinID);
+				SET_BIT(PORTB,pin_num);
 			}
 			else
 			{
-				CLEAR_BIT(PORTB, a_pinID);
+				CLEAR_BIT(PORTB,pin_num);
 			}
 			break;
 		case PORTC_ID:
-			if(a_value == LOGIC_HIGH)
+			if(value == LOGIC_HIGH)
 			{
-				SET_BIT(PORTC, a_pinID);
+				SET_BIT(PORTC,pin_num);
 			}
 			else
 			{
-				CLEAR_BIT(PORTC, a_pinID);
+				CLEAR_BIT(PORTC,pin_num);
 			}
 			break;
 		case PORTD_ID:
-			if(a_value == LOGIC_HIGH)
+			if(value == LOGIC_HIGH)
 			{
-				SET_BIT(PORTD, a_pinID);
+				SET_BIT(PORTD,pin_num);
 			}
 			else
 			{
-				CLEAR_BIT(PORTD, a_pinID);
+				CLEAR_BIT(PORTD,pin_num);
 			}
 			break;
 		}
@@ -175,143 +146,186 @@ void GPIO_writePin(uint8 a_portID, uint8 a_pinID, boolean a_value)
 }
 
 /*
- * Description:
- * Read the value of certain pin LOGIC_HIGH or LOGIC_LOW.
- * If the port number or pin number are not correct, the function will not handle the request.
+ * Description :
+ * Read and return the value for the required pin, it should be Logic High or Logic Low.
+ * If the input port number or pin number are not correct, The function will return Logic Low.
  */
-boolean GPIO_readPin(uint8 a_portID, uint8 a_pinID)
+uint8 GPIO_readPin(uint8 port_num, uint8 pin_num)
 {
-	/*If the port number or pin number are not correct, the function will not handle the request.*/
-	if(a_portID >= NUMBER_OF_PORTS || a_pinID >= NUMBER_OF_PINS_PER_PORT)
+	uint8 pin_value = LOGIC_LOW;
+
+	/*
+	 * Check if the input port number is greater than NUM_OF_PINS_PER_PORT value.
+	 * Or if the input pin number is greater than NUM_OF_PINS_PER_PORT value.
+	 * In this case the input is not valid port/pin number
+	 */
+	if((pin_num >= NUM_OF_PINS_PER_PORT) || (port_num >= NUM_OF_PORTS))
 	{
-		return LOGIC_LOW;
+		/* Do Nothing */
 	}
 	else
 	{
-		/* Select the correct PIN register according to the port id. */
-		boolean result = LOGIC_LOW;
-		switch(a_portID)
+		/* Read the pin value as required */
+		switch(port_num)
 		{
 		case PORTA_ID:
-			(BIT_IS_SET(PINA, a_pinID))? (result = LOGIC_HIGH): (result = LOGIC_LOW);
+			if(BIT_IS_SET(PINA,pin_num))
+			{
+				pin_value = LOGIC_HIGH;
+			}
+			else
+			{
+				pin_value = LOGIC_LOW;
+			}
 			break;
 		case PORTB_ID:
-			(BIT_IS_SET(PINB, a_pinID))? (result = LOGIC_HIGH): (result = LOGIC_LOW);
+			if(BIT_IS_SET(PINB,pin_num))
+			{
+				pin_value = LOGIC_HIGH;
+			}
+			else
+			{
+				pin_value = LOGIC_LOW;
+			}
 			break;
 		case PORTC_ID:
-			(BIT_IS_SET(PINC, a_pinID))? (result = LOGIC_HIGH): (result = LOGIC_LOW);
+			if(BIT_IS_SET(PINC,pin_num))
+			{
+				pin_value = LOGIC_HIGH;
+			}
+			else
+			{
+				pin_value = LOGIC_LOW;
+			}
 			break;
 		case PORTD_ID:
-			(BIT_IS_SET(PIND, a_pinID))? (result = LOGIC_HIGH): (result = LOGIC_LOW);
+			if(BIT_IS_SET(PIND,pin_num))
+			{
+				pin_value = LOGIC_HIGH;
+			}
+			else
+			{
+				pin_value = LOGIC_LOW;
+			}
 			break;
 		}
-		return result;
+	}
+
+	return pin_value;
+}
+
+/*
+ * Description :
+ * Setup the direction of the required port all pins input/output.
+ * If the direction value is PORT_INPUT all pins in this port should be input pins.
+ * If the direction value is PORT_OUTPUT all pins in this port should be output pins.
+ * If the input port number is not correct, The function will not handle the request.
+ */
+void GPIO_setupPortDirection(uint8 port_num, GPIO_PortDirectionType direction)
+{
+	/*
+	 * Check if the input number is greater than NUM_OF_PORTS value.
+	 * In this case the input is not valid port number
+	 */
+	if(port_num >= NUM_OF_PORTS)
+	{
+		/* Do Nothing */
+	}
+	else
+	{
+		/* Setup the port direction as required */
+		switch(port_num)
+		{
+		case PORTA_ID:
+			DDRA = direction;
+			break;
+		case PORTB_ID:
+			DDRB = direction;
+			break;
+		case PORTC_ID:
+			DDRC = direction;
+			break;
+		case PORTD_ID:
+			DDRD = direction;
+			break;
+		}
 	}
 }
 
 /*
- * Description:
- * This function is used to setup port direction
- * It requires the port number and the required direction for the port.
- * If the port number are not correct, the function will not handle the request.
+ * Description :
+ * Write the value on the required port.
+ * If any pin in the port is output pin the value will be written.
+ * If any pin in the port is input pin this will activate/deactivate the internal pull-up resistor.
+ * If the input port number is not correct, The function will not handle the request.
  */
-void GPIO_setupPortDirection(uint8 a_portID, PortDirectionType a_direction)
+void GPIO_writePort(uint8 port_num, uint8 value)
 {
-	/* Check that port id is valid */
-	if(a_portID >= NUMBER_OF_PORTS)
+	/*
+	 * Check if the input number is greater than NUM_OF_PORTS value.
+	 * In this case the input is not valid port number
+	 */
+	if(port_num >= NUM_OF_PORTS)
 	{
-		return;
+		/* Do Nothing */
 	}
 	else
 	{
-		/* Select the correct PORT register according to sent port id */
-		switch(a_portID)
+		/* Write the port value as required */
+		switch(port_num)
 		{
 		case PORTA_ID:
-			DDRA = a_direction;
+			PORTA = value;
 			break;
 		case PORTB_ID:
-			DDRB = a_direction;
+			PORTB = value;
 			break;
 		case PORTC_ID:
-			DDRC = a_direction;
+			PORTC = value;
 			break;
 		case PORTD_ID:
-			DDRD = a_direction;
+			PORTD = value;
 			break;
 		}
 	}
 }
 
 /*
- * Description:
- * This function is used to write 8bits value on certain port.
- * It requires port number and the required value to be written.
- * If the port number is not correct, the function will not handle the request.
+ * Description :
+ * Read and return the value of the required port.
+ * If the input port number is not correct, The function will return ZERO value.
  */
-void GPIO_writePort(uint8 a_portID, uint8 a_value)
+uint8 GPIO_readPort(uint8 port_num)
 {
-	/* Check that port id is valid */
-	if(a_portID >= NUMBER_OF_PORTS)
+	uint8 value = LOGIC_LOW;
+
+	/*
+	 * Check if the input number is greater than NUM_OF_PORTS value.
+	 * In this case the input is not valid port number
+	 */
+	if(port_num >= NUM_OF_PORTS)
 	{
-		return;
+		/* Do Nothing */
 	}
 	else
 	{
-		/* Select the correct PORT register according to sent port id */
-		switch(a_portID)
+		/* Read the port value as required */
+		switch(port_num)
 		{
 		case PORTA_ID:
-			PORTA = a_value;
+			value = PINA;
 			break;
 		case PORTB_ID:
-			PORTB = a_value;
+			value = PINB;
 			break;
 		case PORTC_ID:
-			PORTC = a_value;
+			value = PINC;
 			break;
 		case PORTD_ID:
-			PORTD = a_value;
+			value = PIND;
 			break;
 		}
 	}
-}
 
-/*
- * Description:
- * Read the 8bits value of certain port.
- * If the port number is not correct, the function will not handle the request.
- */
-uint8 GPIO_readPort(uint8 a_portID)
-{
-	/* Check that port id is valid */
-	if(a_portID >= NUMBER_OF_PORTS)
-	{
-		return 0;
-	}
-	else
-	{
-		/* Select the correct PIN register according to sent port id */
-		switch(a_portID)
-		{
-		case PORTA_ID:
-			return PINA;
-			break;
-		case PORTB_ID:
-			return PINB;
-			break;
-		case PORTC_ID:
-			return PINC;
-			break;
-		case PORTD_ID:
-			return PIND;
-			break;
-		default:
-			return 0;
-		}
-	}
+	return value;
 }
-
-/***********************************************************************
- *                              ISRs code                               *
- ***********************************************************************/

@@ -1,20 +1,38 @@
-23:52:15 **** Incremental Build of configuration Debug for project HMI_MCU ****
+23:03:03 **** Incremental Build of configuration Debug for project HMI_MCU ****
 make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+In file included from ../door_locking_hmi.c:29:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
 AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:   10644 bytes (65.0% Full)
+Program:   12212 bytes (74.5% Full)
 (.text + .data + .bootloader)
 
-Data:        104 bytes (10.2% Full)
+Data:        197 bytes (19.2% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-23:52:15 Build Finished. 0 errors, 0 warnings. (took 231ms)
+23:03:03 Build Finished. 0 errors, 2 warnings. (took 658ms)
 

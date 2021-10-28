@@ -1,4 +1,4 @@
-23:52:15 **** Incremental Build of configuration Debug for project testsdgfdgdf ****
+18:30:14 **** Incremental Build of configuration Debug for project testsdgfdgdf ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 testsdgfdgdf.elf
@@ -16,5 +16,5 @@ Data:          8 bytes (0.8% Full)
 Finished building: sizedummy
  
 
-23:52:16 Build Finished. 0 errors, 0 warnings. (took 219ms)
+18:30:14 Build Finished. 0 errors, 0 warnings. (took 203ms)
 

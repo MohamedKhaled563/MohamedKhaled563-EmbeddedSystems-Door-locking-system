@@ -26,6 +26,7 @@
  *                      Functions Prototypes                                   *
  *******************************************************************************/
 
+void EEPROM_init();
 uint8 EEPROM_writeByte(uint16 u16addr,uint8 u8data);
 uint8 EEPROM_readByte(uint16 u16addr,uint8 *u8data);
  

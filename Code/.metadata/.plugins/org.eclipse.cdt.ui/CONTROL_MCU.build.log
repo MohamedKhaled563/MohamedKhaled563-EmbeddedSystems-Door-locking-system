@@ -1,4 +1,4 @@
-23:52:15 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+23:03:02 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
@@ -6,7 +6,7 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    6188 bytes (37.8% Full)
+Program:    7848 bytes (47.9% Full)
 (.text + .data + .bootloader)
 
 Data:          8 bytes (0.8% Full)
@@ -16,5 +16,5 @@ Data:          8 bytes (0.8% Full)
 Finished building: sizedummy
  
 
-23:52:15 Build Finished. 0 errors, 0 warnings. (took 213ms)
+23:03:02 Build Finished. 0 errors, 0 warnings. (took 207ms)
 

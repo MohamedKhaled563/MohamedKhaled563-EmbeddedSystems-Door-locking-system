@@ -7,4 +7,9 @@
 	</section>
 	<section name="CResourceRenameRefactoringInputPage">
 	</section>
+	<section name="RenameInformationPopup">
+		<item key="snap_position" value="2"/>
+	</section>
+	<section name="CRenameRefactoringInputPage">
+	</section>
 </section>
