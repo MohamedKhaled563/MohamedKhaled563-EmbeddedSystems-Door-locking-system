@@ -26,7 +26,8 @@
 
 #define PASSWORD_LENGTH								   	5
 
-#include <util/delay.h>
+#include <avr/io.h>
+#include "delay.h"
 #include "lcd.h"
 #include "gpio.h"
 #include "keypad.h"
@@ -52,12 +53,13 @@ uint8 tryingPassword[PASSWORD_LENGTH];
 
 int main ( void )
 {
+	SREG |= (1<<7);
 	UART_ConfigType config = {9600,BITS_8,NO_PARITY,ONE_STOP_BIT};
 	UART_init(&config);
 
 	LCD_init();
-//			while(UART_recieveByte() != CONTROL_MCU_READY);
-//			UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
+			while(UART_recieveByte() != CONTROL_MCU_READY);
+			UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
 	while(UART_recieveByte() != CONTROL_MCU_READY);
 	UART_sendByte(CONTROL_CHECK_SAVED_PASSWORD_FLAG);
 	UART_sendByte(HMI_MCU_READY);
@@ -69,7 +71,7 @@ int main ( void )
 		{
 			requestNewPassword();
 		}while(	checkNewPassword() == LOGIC_LOW);
-		_delay_ms(1000);
+		delay_ms(1000);
 	}
 
 
@@ -109,11 +111,11 @@ void getPassword( uint8* pass, uint8* counter )
 		/*If user press enter -> end of edit.*/
 		if(key == 13)
 		{
-			_delay_ms(400);
+			delay_ms(400);
 			break;
 		}
 		LCD_displayCharacter('*');
-		_delay_ms(400);
+		delay_ms(400);
 		(*counter)++;
 	}
 }
@@ -172,7 +174,7 @@ void displayError( Error error )
 		LCD_displayString("Password must be");
 		LCD_moveCursor(1, 0);
 		LCD_displayString("5 characters");
-		_delay_ms(1000);
+		delay_ms(1000);
 		LCD_clearScreen();
 		break;
 	case PASSWORD_REENTERING_ERROR:
@@ -181,7 +183,7 @@ void displayError( Error error )
 		LCD_displayString("Error");
 		LCD_moveCursor(1, 3);
 		LCD_displayString("Try Again");
-		_delay_ms(1000);
+		delay_ms(1000);
 		LCD_clearScreen();
 		break;
 	case PASSWORD_INCORRECT:
@@ -190,7 +192,7 @@ void displayError( Error error )
 		LCD_displayString("Error");
 		LCD_moveCursor(1, 0);
 		LCD_displayString("Incorrect Pass.");
-		_delay_ms(1000);
+		delay_ms(1000);
 		LCD_clearScreen();
 		break;
 	}
@@ -228,7 +230,7 @@ uint8 checkNewPassword( void )
 		LCD_moveCursor(0, 4);
 		LCD_displayString("Mis Match");
 	}
-	_delay_ms(1000);
+	delay_ms(1000);
 	return compareResult;
 }
 
@@ -239,7 +241,7 @@ void displayMainOptions( void )
 	LCD_moveCursor(1, 0);
 	LCD_displayString("- : Change Pass.");
 	uint8 key = KEYPAD_getPressedKey();
-	_delay_ms(400);
+	delay_ms(400);
 	switch(key)
 	{
 	case '+':
@@ -254,15 +256,15 @@ void displayMainOptions( void )
 		LCD_displayString("Openning");
 		while(UART_recieveByte() != CONTROL_MCU_READY);
 		UART_sendByte(CONTROL_MOTOR_ROTATE_CW);
-		_delay_ms(1000);
+		delay_ms(1000);
 		LCD_clearScreen();
 		while(UART_recieveByte() != CONTROL_MCU_READY);
 		UART_sendByte(CONTROL_MOTOR_STOP);
-		_delay_ms(500);
+		delay_ms(500);
 		LCD_displayString("Closing");
 		UART_sendByte(CONTROL_MOTOR_ROTATE_CCW);
 		while(UART_recieveByte() != CONTROL_MCU_READY);
-		_delay_ms(1000);
+		delay_ms(1000);
 		LCD_clearScreen();
 		while(UART_recieveByte() != CONTROL_MCU_READY);
 		UART_sendByte(CONTROL_MOTOR_STOP);

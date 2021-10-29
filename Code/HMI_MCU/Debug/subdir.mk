@@ -4,24 +4,30 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../delay.c \
 ../door_locking_hmi.c \
 ../gpio.c \
 ../keypad.c \
 ../lcd.c \
+../timer.c \
 ../uart.c 
 
 OBJS += \
+./delay.o \
 ./door_locking_hmi.o \
 ./gpio.o \
 ./keypad.o \
 ./lcd.o \
+./timer.o \
 ./uart.o 
 
 C_DEPS += \
+./delay.d \
 ./door_locking_hmi.d \
 ./gpio.d \
 ./keypad.d \
 ./lcd.d \
+./timer.d \
 ./uart.d 
 
 

@@ -11,13 +11,14 @@
  */
 #define F_CPU 8000000
 
-#include <util/delay.h>
+#include <avr/io.h>
 #include "uart.h"
 #include "std_types.h"
 #include "external_eeprom.h"
 #include "gpio.h"
 #include "dc_motor.h"
 #include "buzzer.h"
+#include "delay.h"
 
 #define CONTROL_MCU_READY 0x10
 #define HMI_MCU_READY 0xff
@@ -51,17 +52,13 @@ void stopDoor( void );
 
 int main ( void )
 {
+	SREG |= (1<<7);
 	/* Delay to let UART in the other MCU to be initialized */
 	EEPROM_init();
-	_delay_ms(1);
+	delay_ms(1);
 	UART_ConfigType config = {9600,BITS_8,NO_PARITY,ONE_STOP_BIT};
 	UART_init(&config);
 	DcMotor_Init();
-
-	BUZZER_Init();
-	BUZZER_On();
-	_delay_ms(1000);
-	BUZZER_Off();
 
 
 	while(1)
@@ -159,10 +156,10 @@ void savePassword( uint8* const password )
 	for(uint8 i = 0; i < PASSWORD_LENGTH; i++)
 	{
 		EEPROM_writeByte(PASSWORD_START_ADDRESS + i, password[i]);
-		_delay_ms(10);
+		delay_ms(10);
 	}
 	EEPROM_writeByte(SAVED_PASSWORD_FLAG_ADDRESS, LOGIC_HIGH);
-	_delay_ms(10);
+	delay_ms(10);
 }
 
 void checkSavedPassword( void )
@@ -176,7 +173,7 @@ void checkSavedPassword( void )
 void eraseSavedPassword( void )
 {
 	EEPROM_writeByte(SAVED_PASSWORD_FLAG_ADDRESS, LOGIC_LOW);
-	_delay_ms(10);
+	delay_ms(10);
 }
 
 void checkPassword( void )

@@ -11,7 +11,8 @@
  *******************************************************************************/
 #include "external_eeprom.h"
 #include "twi.h"
-#include <util/delay.h>
+#include "delay.h"
+
 void EEPROM_init()
 {
 	TWI_ConfigType config = { 400000, 0x01 };
