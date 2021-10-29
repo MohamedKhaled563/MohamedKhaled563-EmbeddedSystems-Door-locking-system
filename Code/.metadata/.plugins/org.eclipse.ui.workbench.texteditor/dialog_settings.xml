@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="+"/>
+		<item key="selection" value="thi"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="thi"/>
+			<item value="the"/>
+			<item value="PASSWORD_INCORRECT_THREE_TIMES"/>
+			<item value="requestPassword"/>
+			<item value="++"/>
+			<item value="checkTryingPassword"/>
+			<item value="_delay_ms"/>
+			<item value="delay"/>
+			<item value="delay_ms"/>
 			<item value="+"/>
 			<item value="////"/>
 			<item value="readby"/>
 			<item value="savepass"/>
 			<item value="save"/>
 			<item value="EEPROM_readByte"/>
-			<item value="EEPROM_writeByte"/>
-			<item value="CHECK_PASSWORD_WITH_SAVED_PASSWORD"/>
-			<item value="savePass"/>
-			<item value="-"/>
-			<item value="tryingPassword"/>
-			<item value="5"/>
-			<item value="sending"/>
-			<item value="error"/>
 		</list>
 		<list key="replacehistory">
+			<item value="delay_ms"/>
 			<item value="tryingPassword"/>
 		</list>
 	</section>

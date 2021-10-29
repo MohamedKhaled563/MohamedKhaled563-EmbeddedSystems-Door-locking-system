@@ -23,8 +23,6 @@
 #define CONTROL_MOTOR_ROTATE_CW							 0x06
 #define CONTROL_MOTOR_STOP 								 0x07
 #define CONTROL_MOTOR_ROTATE_CCW						 0x08
-#define CONTROL_BUZZER_ON 								 0X09
-#define CONTROL_BUZZER_OFF								 0X0A
 
 #define PASSWORD_LENGTH								   	5
 
@@ -205,7 +203,6 @@ void displayError( Error error )
 		LCD_displayString("Theif");
 		delay_ms(1000);
 		LCD_clearScreen();
-		break;
 	}
 }
 
@@ -253,28 +250,22 @@ void displayMainOptions( void )
 	LCD_displayString("- : Change Pass.");
 	uint8 key = KEYPAD_getPressedKey();
 	delay_ms(400);
-	uint8 trials = 0;
 	switch(key)
 	{
 	case '+':
-		trials = 0;
 		requestPassword();
-		Error error;
+		uint8 trials = 0;
 		while(!checkTryingPassword())
 		{
-			error = PASSWORD_INCORRECT;
+			Error error = PASSWORD_INCORRECT;
 			displayError(error);
 			requestPassword();
 			trials++;
-			if(trials >= 3)
+			if(trials > 3)
 			{
 				/* This is a thief. */
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_ON);
-				error = PASSWORD_INCORRECT_THREE_TIMES;
+				Error error = PASSWORD_INCORRECT_THREE_TIMES;
 				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
 				trials = 0;
 			}
 		}
@@ -296,25 +287,12 @@ void displayMainOptions( void )
 		UART_sendByte(CONTROL_MOTOR_STOP);
 		break;
 	case '-':
-		trials = 0;
 		requestPassword();
 		while(!checkTryingPassword())
 		{
-			error = PASSWORD_INCORRECT;
+			Error error = PASSWORD_INCORRECT;
 			displayError(error);
 			requestPassword();
-			trials++;
-			if(trials >= 3)
-			{
-				/* This is a thief. */
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_ON);
-				error = PASSWORD_INCORRECT_THREE_TIMES;
-				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
-				trials = 0;
-			}
 		}
 		requestNewPassword();
 		while(!checkNewPassword())

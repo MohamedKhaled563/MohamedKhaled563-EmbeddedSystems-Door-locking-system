@@ -269,12 +269,9 @@ void displayMainOptions( void )
 			if(trials >= 3)
 			{
 				/* This is a thief. */
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_ON);
 				error = PASSWORD_INCORRECT_THREE_TIMES;
+
 				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
 				trials = 0;
 			}
 		}
@@ -311,8 +308,6 @@ void displayMainOptions( void )
 				UART_sendByte(CONTROL_BUZZER_ON);
 				error = PASSWORD_INCORRECT_THREE_TIMES;
 				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
 				trials = 0;
 			}
 		}

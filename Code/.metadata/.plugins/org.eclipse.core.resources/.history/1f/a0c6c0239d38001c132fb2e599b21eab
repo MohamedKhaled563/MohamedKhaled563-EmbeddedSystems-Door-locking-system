@@ -226,3 +226,11 @@ void stopDoor( void )
 	DcMotor_Rotate(STOP);
 }
 
+void buzzerOn ()
+{
+	BUZZER_On();
+}
+void buzzerOff ( )
+{
+	BUZZER_Off();
+}

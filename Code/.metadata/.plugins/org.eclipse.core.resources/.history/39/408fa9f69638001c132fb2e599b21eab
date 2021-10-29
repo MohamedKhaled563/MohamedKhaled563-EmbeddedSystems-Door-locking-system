@@ -23,8 +23,6 @@
 #define CONTROL_MOTOR_ROTATE_CW							 0x06
 #define CONTROL_MOTOR_STOP 								 0x07
 #define CONTROL_MOTOR_ROTATE_CCW						 0x08
-#define CONTROL_BUZZER_ON 								 0X09
-#define CONTROL_BUZZER_OFF								 0X0A
 
 #define PASSWORD_LENGTH								   	5
 
@@ -36,7 +34,7 @@
 #include "uart.h"
 
 typedef enum {
-	PASSWORD_LENGTH_ERROR, PASSWORD_REENTERING_ERROR, PASSWORD_INCORRECT, PASSWORD_INCORRECT_THREE_TIMES
+	PASSWORD_LENGTH_ERROR, PASSWORD_REENTERING_ERROR, PASSWORD_INCORRECT
 } Error;
 
 
@@ -60,8 +58,8 @@ int main ( void )
 	UART_init(&config);
 
 	LCD_init();
-	//			while(UART_recieveByte() != CONTROL_MCU_READY);
-	//			UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
+			while(UART_recieveByte() != CONTROL_MCU_READY);
+			UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
 	while(UART_recieveByte() != CONTROL_MCU_READY);
 	UART_sendByte(CONTROL_CHECK_SAVED_PASSWORD_FLAG);
 	UART_sendByte(HMI_MCU_READY);
@@ -197,15 +195,6 @@ void displayError( Error error )
 		delay_ms(1000);
 		LCD_clearScreen();
 		break;
-	case PASSWORD_INCORRECT_THREE_TIMES:
-		LCD_clearScreen();
-		LCD_moveCursor(0, 4);
-		LCD_displayString("Warning");
-		LCD_moveCursor(1, 5);
-		LCD_displayString("Theif");
-		delay_ms(1000);
-		LCD_clearScreen();
-		break;
 	}
 }
 
@@ -253,30 +242,15 @@ void displayMainOptions( void )
 	LCD_displayString("- : Change Pass.");
 	uint8 key = KEYPAD_getPressedKey();
 	delay_ms(400);
-	uint8 trials = 0;
 	switch(key)
 	{
 	case '+':
-		trials = 0;
 		requestPassword();
-		Error error;
 		while(!checkTryingPassword())
 		{
-			error = PASSWORD_INCORRECT;
+			Error error = PASSWORD_INCORRECT;
 			displayError(error);
 			requestPassword();
-			trials++;
-			if(trials >= 3)
-			{
-				/* This is a thief. */
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_ON);
-				error = PASSWORD_INCORRECT_THREE_TIMES;
-				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
-				trials = 0;
-			}
 		}
 		LCD_clearScreen();
 		LCD_displayString("Openning");
@@ -296,25 +270,12 @@ void displayMainOptions( void )
 		UART_sendByte(CONTROL_MOTOR_STOP);
 		break;
 	case '-':
-		trials = 0;
 		requestPassword();
 		while(!checkTryingPassword())
 		{
-			error = PASSWORD_INCORRECT;
+			Error error = PASSWORD_INCORRECT;
 			displayError(error);
 			requestPassword();
-			trials++;
-			if(trials >= 3)
-			{
-				/* This is a thief. */
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_ON);
-				error = PASSWORD_INCORRECT_THREE_TIMES;
-				displayError(error);
-				while(UART_recieveByte() != CONTROL_MCU_READY);
-				UART_sendByte(CONTROL_BUZZER_OFF);
-				trials = 0;
-			}
 		}
 		requestNewPassword();
 		while(!checkNewPassword())
@@ -322,7 +283,6 @@ void displayMainOptions( void )
 			Error error = PASSWORD_REENTERING_ERROR;
 			displayError(error);
 			requestNewPassword();
-
 		}
 		break;
 	default:

@@ -126,7 +126,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1860
+.text           0x00000000     0x1886
  *(.vectors)
  .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
                 0x00000000                __vectors
@@ -232,138 +232,138 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  .text.delay_ms
                 0x000001c4       0xb8 ./delay.o
                 0x000001c4                delay_ms
- .text.main     0x0000027c       0xaa ./door_locking_control.o
+ .text.main     0x0000027c       0x96 ./door_locking_control.o
                 0x0000027c                main
  .text.performCommand
-                0x00000326       0xb0 ./door_locking_control.o
-                0x00000326                performCommand
+                0x00000312       0xea ./door_locking_control.o
+                0x00000312                performCommand
  .text.checkNewPassword
-                0x000003d6       0xe0 ./door_locking_control.o
-                0x000003d6                checkNewPassword
+                0x000003fc       0xe0 ./door_locking_control.o
+                0x000003fc                checkNewPassword
  .text.checkPasswordLength
-                0x000004b6       0x3a ./door_locking_control.o
-                0x000004b6                checkPasswordLength
+                0x000004dc       0x3a ./door_locking_control.o
+                0x000004dc                checkPasswordLength
  .text.savePassword
-                0x000004f0       0x72 ./door_locking_control.o
-                0x000004f0                savePassword
+                0x00000516       0x72 ./door_locking_control.o
+                0x00000516                savePassword
  .text.checkSavedPassword
-                0x00000562       0x30 ./door_locking_control.o
-                0x00000562                checkSavedPassword
+                0x00000588       0x30 ./door_locking_control.o
+                0x00000588                checkSavedPassword
  .text.eraseSavedPassword
-                0x00000592       0x24 ./door_locking_control.o
-                0x00000592                eraseSavedPassword
+                0x000005b8       0x24 ./door_locking_control.o
+                0x000005b8                eraseSavedPassword
  .text.checkPassword
-                0x000005b6       0xdc ./door_locking_control.o
-                0x000005b6                checkPassword
+                0x000005dc       0xdc ./door_locking_control.o
+                0x000005dc                checkPassword
  .text.openDoor
-                0x00000692       0x14 ./door_locking_control.o
-                0x00000692                openDoor
+                0x000006b8       0x14 ./door_locking_control.o
+                0x000006b8                openDoor
  .text.closeDoor
-                0x000006a6       0x14 ./door_locking_control.o
-                0x000006a6                closeDoor
+                0x000006cc       0x14 ./door_locking_control.o
+                0x000006cc                closeDoor
  .text.stopDoor
-                0x000006ba       0x14 ./door_locking_control.o
-                0x000006ba                stopDoor
+                0x000006e0       0x14 ./door_locking_control.o
+                0x000006e0                stopDoor
  .text.EEPROM_init
-                0x000006ce       0x6e ./external_eeprom.o
-                0x000006ce                EEPROM_init
+                0x000006f4       0x6e ./external_eeprom.o
+                0x000006f4                EEPROM_init
  .text.EEPROM_writeByte
-                0x0000073c       0x82 ./external_eeprom.o
-                0x0000073c                EEPROM_writeByte
+                0x00000762       0x82 ./external_eeprom.o
+                0x00000762                EEPROM_writeByte
  .text.EEPROM_readByte
-                0x000007be       0xc0 ./external_eeprom.o
-                0x000007be                EEPROM_readByte
+                0x000007e4       0xc0 ./external_eeprom.o
+                0x000007e4                EEPROM_readByte
  .text.GPIO_setupPinDirection
-                0x0000087e      0x1d6 ./gpio.o
-                0x0000087e                GPIO_setupPinDirection
+                0x000008a4      0x1d6 ./gpio.o
+                0x000008a4                GPIO_setupPinDirection
  .text.GPIO_writePin
-                0x00000a54      0x1d6 ./gpio.o
-                0x00000a54                GPIO_writePin
+                0x00000a7a      0x1d6 ./gpio.o
+                0x00000a7a                GPIO_writePin
  .text.GPIO_readPin
-                0x00000c2a      0x136 ./gpio.o
-                0x00000c2a                GPIO_readPin
+                0x00000c50      0x136 ./gpio.o
+                0x00000c50                GPIO_readPin
  .text.GPIO_setupPortDirection
-                0x00000d60       0x88 ./gpio.o
-                0x00000d60                GPIO_setupPortDirection
+                0x00000d86       0x88 ./gpio.o
+                0x00000d86                GPIO_setupPortDirection
  .text.GPIO_writePort
-                0x00000de8       0x88 ./gpio.o
-                0x00000de8                GPIO_writePort
+                0x00000e0e       0x88 ./gpio.o
+                0x00000e0e                GPIO_writePort
  .text.GPIO_readPort
-                0x00000e70       0x8a ./gpio.o
-                0x00000e70                GPIO_readPort
+                0x00000e96       0x8a ./gpio.o
+                0x00000e96                GPIO_readPort
  .text.TIMER_Init
-                0x00000efa      0x204 ./timer.o
-                0x00000efa                TIMER_Init
+                0x00000f20      0x204 ./timer.o
+                0x00000f20                TIMER_Init
  .text.TIMER_setCallBack
-                0x000010fe       0x72 ./timer.o
-                0x000010fe                TIMER_setCallBack
+                0x00001124       0x72 ./timer.o
+                0x00001124                TIMER_setCallBack
  .text.TIMER_Deinit
-                0x00001170       0x56 ./timer.o
-                0x00001170                TIMER_Deinit
+                0x00001196       0x56 ./timer.o
+                0x00001196                TIMER_Deinit
  .text.__vector_9
-                0x000011c6       0x72 ./timer.o
-                0x000011c6                __vector_9
+                0x000011ec       0x72 ./timer.o
+                0x000011ec                __vector_9
  .text.__vector_19
-                0x00001238       0x74 ./timer.o
-                0x00001238                __vector_19
+                0x0000125e       0x74 ./timer.o
+                0x0000125e                __vector_19
  .text.__vector_8
-                0x000012ac       0x74 ./timer.o
-                0x000012ac                __vector_8
+                0x000012d2       0x74 ./timer.o
+                0x000012d2                __vector_8
  .text.__vector_6
-                0x00001320       0x74 ./timer.o
-                0x00001320                __vector_6
+                0x00001346       0x74 ./timer.o
+                0x00001346                __vector_6
  .text.__vector_4
-                0x00001394       0x74 ./timer.o
-                0x00001394                __vector_4
+                0x000013ba       0x74 ./timer.o
+                0x000013ba                __vector_4
  .text.__vector_3
-                0x00001408       0x74 ./timer.o
-                0x00001408                __vector_3
+                0x0000142e       0x74 ./timer.o
+                0x0000142e                __vector_3
  .text.TWI_init
-                0x0000147c       0x72 ./twi.o
-                0x0000147c                TWI_init
+                0x000014a2       0x72 ./twi.o
+                0x000014a2                TWI_init
  .text.TWI_start
-                0x000014ee       0x20 ./twi.o
-                0x000014ee                TWI_start
+                0x00001514       0x20 ./twi.o
+                0x00001514                TWI_start
  .text.TWI_stop
-                0x0000150e       0x16 ./twi.o
-                0x0000150e                TWI_stop
+                0x00001534       0x16 ./twi.o
+                0x00001534                TWI_stop
  .text.TWI_writeByte
-                0x00001524       0x2e ./twi.o
-                0x00001524                TWI_writeByte
+                0x0000154a       0x2e ./twi.o
+                0x0000154a                TWI_writeByte
  .text.TWI_readByteWithACK
-                0x00001552       0x26 ./twi.o
-                0x00001552                TWI_readByteWithACK
- .text.TWI_readByteWithNACK
                 0x00001578       0x26 ./twi.o
-                0x00001578                TWI_readByteWithNACK
+                0x00001578                TWI_readByteWithACK
+ .text.TWI_readByteWithNACK
+                0x0000159e       0x26 ./twi.o
+                0x0000159e                TWI_readByteWithNACK
  .text.TWI_getStatus
-                0x0000159e       0x1e ./twi.o
-                0x0000159e                TWI_getStatus
+                0x000015c4       0x1e ./twi.o
+                0x000015c4                TWI_getStatus
  .text.UART_init
-                0x000015bc      0x138 ./uart.o
-                0x000015bc                UART_init
+                0x000015e2      0x138 ./uart.o
+                0x000015e2                UART_init
  .text.UART_sendByte
-                0x000016f4       0x2e ./uart.o
-                0x000016f4                UART_sendByte
+                0x0000171a       0x2e ./uart.o
+                0x0000171a                UART_sendByte
  .text.UART_recieveByte
-                0x00001722       0x1e ./uart.o
-                0x00001722                UART_recieveByte
+                0x00001748       0x1e ./uart.o
+                0x00001748                UART_recieveByte
  .text.UART_sendString
-                0x00001740       0x52 ./uart.o
-                0x00001740                UART_sendString
+                0x00001766       0x52 ./uart.o
+                0x00001766                UART_sendString
  .text.UART_receiveString
-                0x00001792       0x86 ./uart.o
-                0x00001792                UART_receiveString
- .text.libgcc   0x00001818       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001818                __udivmodsi4
- .text.libgcc   0x0000185c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000185c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x0000185c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x0000185c                . = ALIGN (0x2)
+                0x000017b8       0x86 ./uart.o
+                0x000017b8                UART_receiveString
+ .text.libgcc   0x0000183e       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000183e                __udivmodsi4
+ .text.libgcc   0x00001882        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00001882        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00001882        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00001882                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000185c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000185c                exit
-                0x0000185c                _exit
+ .fini9         0x00001882        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00001882                exit
+                0x00001882                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -382,11 +382,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000185c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001882        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001860                _etext = .
+                0x00001886                _etext = .
 
-.data           0x00800060       0x12 load address 0x00001860
+.data           0x00800060       0x12 load address 0x00001886
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
@@ -446,8 +446,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x0080007a        0x2 ./timer.o
  *(COMMON)
                 0x0080007c                PROVIDE (__bss_end, .)
-                0x00001860                __data_load_start = LOADADDR (.data)
-                0x00001872                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001886                __data_load_start = LOADADDR (.data)
+                0x00001898                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080007c        0x0
                 0x0080007c                PROVIDE (__noinit_start, .)
@@ -472,24 +472,24 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x26a0
+.stab           0x00000000     0x2694
  *(.stab)
  .stab          0x00000000      0x45c ./buzzer.o
  .stab          0x0000045c      0x1f8 ./dc_motor.o
                                 0x2d0 (size before relaxing)
  .stab          0x00000654      0x240 ./delay.o
                                 0x2dc (size before relaxing)
- .stab          0x00000894      0x888 ./door_locking_control.o
-                                0xb34 (size before relaxing)
- .stab          0x0000111c      0x390 ./external_eeprom.o
+ .stab          0x00000894      0x87c ./door_locking_control.o
+                                0xb28 (size before relaxing)
+ .stab          0x00001110      0x390 ./external_eeprom.o
                                 0x42c (size before relaxing)
- .stab          0x000014ac      0x5e8 ./gpio.o
+ .stab          0x000014a0      0x5e8 ./gpio.o
                                 0x870 (size before relaxing)
- .stab          0x00001a94      0x528 ./timer.o
+ .stab          0x00001a88      0x528 ./timer.o
                                 0x7d4 (size before relaxing)
- .stab          0x00001fbc      0x33c ./twi.o
+ .stab          0x00001fb0      0x33c ./twi.o
                                 0x5a0 (size before relaxing)
- .stab          0x000022f8      0x3a8 ./uart.o
+ .stab          0x000022ec      0x3a8 ./uart.o
                                 0x654 (size before relaxing)
 
 .stabstr        0x00000000     0x1309

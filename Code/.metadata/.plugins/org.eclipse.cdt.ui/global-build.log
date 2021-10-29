@@ -7993,3 +7993,576 @@ Data:        211 bytes (20.6% Full)
 
 Finished building: sizedummy
  
+11:13:27 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Building file: ../door_locking_control.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_control.d" -MT"door_locking_control.o" -c -o "door_locking_control.o" "../door_locking_control.c"
+../door_locking_control.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_control.c
+ 
+Building target: CONTROL_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,CONTROL_MCU.map -mmcu=atmega16 -o "CONTROL_MCU.elf"  ./buzzer.o ./dc_motor.o ./delay.o ./door_locking_control.o ./external_eeprom.o ./gpio.o ./timer.o ./twi.o ./uart.o   
+Finished building target: CONTROL_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S CONTROL_MCU.elf  >"CONTROL_MCU.lss"
+Finished building: CONTROL_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:13:28 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7178 bytes (43.8% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:21:33 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:21:34 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7178 bytes (43.8% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:26:58 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:26:59 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7178 bytes (43.8% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:28:15 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:28:16 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7178 bytes (43.8% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:30:38 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:30:38 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7178 bytes (43.8% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:31:34 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:31:35 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+../door_locking_hmi.c: In function 'displayMainOptions':
+../door_locking_hmi.c:369: error: expected declaration or statement at end of input
+make: *** [door_locking_hmi.o] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+11:31:51 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:31:51 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7196 bytes (43.9% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:36:39 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:36:39 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+../door_locking_hmi.c: In function 'displayMainOptions':
+../door_locking_hmi.c:292: error: a label can only be part of a statement and a declaration is not a statement
+../door_locking_hmi.c:292: error: redefinition of 'trials'
+../door_locking_hmi.c:258: error: previous definition of 'trials' was here
+make: *** [door_locking_hmi.o] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+11:37:02 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:37:03 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7200 bytes (43.9% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:42:29 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6234 bytes (38.0% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:42:30 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7200 bytes (43.9% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:46:52 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Building file: ../door_locking_control.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_control.d" -MT"door_locking_control.o" -c -o "door_locking_control.o" "../door_locking_control.c"
+../door_locking_control.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_control.c
+ 
+Building target: CONTROL_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,CONTROL_MCU.map -mmcu=atmega16 -o "CONTROL_MCU.elf"  ./buzzer.o ./dc_motor.o ./delay.o ./door_locking_control.o ./external_eeprom.o ./gpio.o ./timer.o ./twi.o ./uart.o   
+Finished building target: CONTROL_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S CONTROL_MCU.elf  >"CONTROL_MCU.lss"
+Finished building: CONTROL_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6296 bytes (38.4% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:46:52 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7200 bytes (43.9% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:48:58 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6296 bytes (38.4% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:48:58 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+../door_locking_hmi.c: In function 'displayMainOptions':
+../door_locking_hmi.c:278: error: 's' undeclared (first use in this function)
+../door_locking_hmi.c:278: error: (Each undeclared identifier is reported only once
+../door_locking_hmi.c:278: error: for each function it appears in.)
+../door_locking_hmi.c:279: error: expected ';' before '}' token
+make: *** [door_locking_hmi.o] Error 1
+"make all" terminated with exit code 2. Build might be incomplete.
+11:49:00 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+make all 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    6296 bytes (38.4% Full)
+(.text + .data + .bootloader)
+
+Data:         28 bytes (2.7% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+11:49:01 **** Incremental Build of configuration Debug for project HMI_MCU ****
+make all 
+Building file: ../door_locking_hmi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
+../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+<command-line>: warning: this is the location of the previous definition
+Finished building: ../door_locking_hmi.c
+ 
+Building target: HMI_MCU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI_MCU.map -mmcu=atmega16 -o "HMI_MCU.elf"  ./delay.o ./door_locking_hmi.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI_MCU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI_MCU.elf  >"HMI_MCU.lss"
+Finished building: HMI_MCU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI_MCU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    7256 bytes (44.3% Full)
+(.text + .data + .bootloader)
+
+Data:        225 bytes (22.0% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

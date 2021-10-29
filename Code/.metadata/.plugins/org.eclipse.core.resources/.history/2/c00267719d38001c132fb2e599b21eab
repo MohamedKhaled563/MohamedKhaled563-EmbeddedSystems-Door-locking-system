@@ -275,7 +275,7 @@ void displayMainOptions( void )
 				displayError(error);
 				while(UART_recieveByte() != CONTROL_MCU_READY);
 				UART_sendByte(CONTROL_BUZZER_OFF);
-				trials = 0;
+				trials = 0;s
 			}
 		}
 		LCD_clearScreen();

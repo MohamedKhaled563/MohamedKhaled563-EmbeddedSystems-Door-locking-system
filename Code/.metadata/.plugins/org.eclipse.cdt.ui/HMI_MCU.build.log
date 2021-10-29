@@ -1,4 +1,4 @@
-10:53:07 **** Incremental Build of configuration Debug for project HMI_MCU ****
+11:49:01 **** Incremental Build of configuration Debug for project HMI_MCU ****
 make all 
 Building file: ../door_locking_hmi.c
 Invoking: AVR Compiler
@@ -22,15 +22,15 @@ AVR Memory Usage
 ----------------
 Device: atmega16
 
-Program:    7068 bytes (43.1% Full)
+Program:    7256 bytes (44.3% Full)
 (.text + .data + .bootloader)
 
-Data:        211 bytes (20.6% Full)
+Data:        225 bytes (22.0% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-10:53:08 Build Finished. 0 errors, 1 warnings. (took 569ms)
+11:49:01 Build Finished. 0 errors, 1 warnings. (took 518ms)
 

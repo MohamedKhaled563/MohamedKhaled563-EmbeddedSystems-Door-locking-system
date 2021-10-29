@@ -34,7 +34,7 @@
 #define CONTROL_MOTOR_STOP 								 0x07
 #define CONTROL_MOTOR_ROTATE_CCW						 0x08
 #define CONTROL_BUZZER_ON 								 0X09
-#define CONTROL_BUZZER_OFF								 0X0A
+#define CONTRL_BUZZER_OFF								 0X0A
 
 #define PASSWORD_LENGTH								   	5
 
@@ -100,12 +100,6 @@ void performCommand( uint8 command )
 		break;
 	case CONTROL_MOTOR_ROTATE_CCW:
 		closeDoor();
-		break;
-	case CONTROL_BUZZER_ON:
-		BUZZER_On();
-		break;
-	case CONTROL_BUZZER_OFF:
-		BUZZER_Off();
 		break;
 	default:
 		break;
@@ -226,3 +220,11 @@ void stopDoor( void )
 	DcMotor_Rotate(STOP);
 }
 
+void buzzerOn ()
+{
+	BUZZER_On();
+}
+void buzzerOff ( )
+{
+	BUZZER_Off();
+}
