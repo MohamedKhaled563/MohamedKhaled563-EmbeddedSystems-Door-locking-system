@@ -6,7 +6,7 @@
  *
  * Description: Source file for the UART AVR driver
  *
- * Author: Mohamed Tarek
+ * Author: Mohamed Khaled.
  *
  *******************************************************************************/
 
@@ -71,7 +71,7 @@ void UART_init( UART_ConfigType* config )
 		break;
 	}
 	
-	/* Calculate the UBRR register value according to configurations */
+	/* Calculate the UBRR register value */
 	ubrr_value = (uint16)(((F_CPU / (config->bitRate * 8UL))) - 1);
 
 	/* First 8 bits from the BAUD_PRESCALE inside UBRRL and last 4 bits in UBRRH*/

@@ -19,8 +19,6 @@
 /***********************************************************************
  *              Include the other required header files                 *
  ***********************************************************************/
-#include <avr/io.h> /* To use IO registers */
-#include "common_macros.h" /* To use macros like SET_BIT */
 #include "gpio.h"
 
 
@@ -45,6 +43,7 @@ void BUZZER_On( void )
 {
 	GPIO_writePin(BUZZER_PORT_ID, BUZZER_PIN_ID, LOGIC_HIGH);
 }
+
 
 /*
  * Description:

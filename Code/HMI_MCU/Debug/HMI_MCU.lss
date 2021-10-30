@@ -214,10 +214,10 @@ void delay_ms( uint32 n )
      17c:	08 95       	ret
 
 0000017e <main>:
-uint8 password[PASSWORD_LENGTH];
-uint8 reEnteredPassword[PASSWORD_LENGTH];
-uint8 tryingPassword[PASSWORD_LENGTH];
 
+/***********************************************************************
+ *                       Functions Implementation                      *
+ ***********************************************************************/
 int main ( void )
 {
      17e:	df 93       	push	r29
@@ -230,6 +230,7 @@ int main ( void )
      18c:	de bf       	out	0x3e, r29	; 62
      18e:	0f be       	out	0x3f, r0	; 63
      190:	cd bf       	out	0x3d, r28	; 61
+	/* Enable global interrupt. */
 	SREG |= (1<<7);
      192:	af e5       	ldi	r26, 0x5F	; 95
      194:	b0 e0       	ldi	r27, 0x00	; 0
@@ -275,11 +276,13 @@ int main ( void )
      1e0:	ce 01       	movw	r24, r28
      1e2:	02 96       	adiw	r24, 0x02	; 2
      1e4:	0e 94 31 0c 	call	0x1862	; 0x1862 <UART_init>
-
 	LCD_init();
      1e8:	0e 94 24 08 	call	0x1048	; 0x1048 <LCD_init>
-	//			while(UART_recieveByte() != CONTROL_MCU_READY);
-	//			UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
+	/*************************** UNCOMMENT the next two lines to make hard reset and set new password ***************************/
+	/*
+	while(UART_recieveByte() != CONTROL_MCU_READY);
+	UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
+	*/
 	while(UART_recieveByte() != CONTROL_MCU_READY);
      1ec:	0e 94 e4 0c 	call	0x19c8	; 0x19c8 <UART_recieveByte>
      1f0:	80 31       	cpi	r24, 0x10	; 16
@@ -313,8 +316,7 @@ int main ( void )
      21c:	80 e0       	ldi	r24, 0x00	; 0
      21e:	90 e0       	ldi	r25, 0x00	; 0
      220:	0e 94 63 00 	call	0xc6	; 0xc6 <delay_ms>
-	//	UART_sendByte(CONTROL_ERASE_SAVED_PASSWORD);
-
+	}
 
 	while(1)
 	{
@@ -323,10 +325,10 @@ int main ( void )
      228:	fd cf       	rjmp	.-6      	; 0x224 <main+0xa6>
 
 0000022a <getPassword>:
-
-	return 0;
-}
-
+/*
+ * Description:
+ * Requests password from user and displays '*' in LCD instead of real characters.
+ */
 void getPassword( uint8* pass, uint8* counter )
 {
      22a:	df 93       	push	r29
@@ -420,9 +422,10 @@ void getPassword( uint8* pass, uint8* counter )
      2ae:	cf cf       	rjmp	.-98     	; 0x24e <getPassword+0x24>
 
 000002b0 <requestNewPassword>:
-	}
-}
-
+/*
+ * Description:
+ * Asks the user to enter new password.
+ */
 void requestNewPassword( void )
 {
      2b0:	df 93       	push	r29
@@ -461,7 +464,6 @@ void requestNewPassword( void )
      2e2:	8e 81       	ldd	r24, Y+6	; 0x06
      2e4:	0e 94 a7 03 	call	0x74e	; 0x74e <checkPasswordLength>
      2e8:	8c 83       	std	Y+4, r24	; 0x04
-
 		if(result == LOGIC_LOW)
      2ea:	8c 81       	ldd	r24, Y+4	; 0x04
      2ec:	88 23       	and	r24, r24
@@ -541,11 +543,11 @@ void requestNewPassword( void )
      340:	8d 81       	ldd	r24, Y+5	; 0x05
      342:	81 30       	cpi	r24, 0x01	; 1
      344:	19 f3       	breq	.-58     	; 0x30c <requestNewPassword+0x5c>
+			errorFlag = LOGIC_HIGH;
 			Error error = PASSWORD_LENGTH_ERROR;
 			displayError(error);
 		}
 	}
-
 }
      346:	26 96       	adiw	r28, 0x06	; 6
      348:	0f b6       	in	r0, 0x3f	; 63
@@ -558,7 +560,10 @@ void requestNewPassword( void )
      356:	08 95       	ret
 
 00000358 <displayError>:
-
+/*
+ * Description:
+ * Displays different types of errors in the system.
+ */
 void displayError( Error error )
 {
      358:	df 93       	push	r29
@@ -704,7 +709,7 @@ void displayError( Error error )
      45c:	81 e0       	ldi	r24, 0x01	; 1
      45e:	65 e0       	ldi	r22, 0x05	; 5
      460:	0e 94 e8 08 	call	0x11d0	; 0x11d0 <LCD_moveCursor>
-		LCD_displayString("Theif");
+		LCD_displayString("Thief");
      464:	87 ec       	ldi	r24, 0xC7	; 199
      466:	90 e0       	ldi	r25, 0x00	; 0
      468:	0e 94 bf 08 	call	0x117e	; 0x117e <LCD_displayString>
@@ -727,7 +732,10 @@ void displayError( Error error )
      486:	08 95       	ret
 
 00000488 <checkNewPassword>:
-
+/*
+ * Description:
+ * Sends commands to control MCU to compare the entered two passwords.
+ */
 uint8 checkNewPassword( void )
 {
      488:	df 93       	push	r29
@@ -736,6 +744,7 @@ uint8 checkNewPassword( void )
      48e:	0f 92       	push	r0
      490:	cd b7       	in	r28, 0x3d	; 61
      492:	de b7       	in	r29, 0x3e	; 62
+	/* Sending checking password command to control MCU after getting acknoledgement.*/
 	while(UART_recieveByte() != CONTROL_MCU_READY);
      494:	0e 94 e4 0c 	call	0x19c8	; 0x19c8 <UART_recieveByte>
      498:	80 31       	cpi	r24, 0x10	; 16
@@ -813,7 +822,6 @@ uint8 checkNewPassword( void )
 	uint8 compareResult = UART_recieveByte();
      4f4:	0e 94 e4 0c 	call	0x19c8	; 0x19c8 <UART_recieveByte>
      4f8:	8b 83       	std	Y+3, r24	; 0x03
-
 	if(compareResult)
      4fa:	8b 81       	ldd	r24, Y+3	; 0x03
      4fc:	88 23       	and	r24, r24
@@ -861,7 +869,10 @@ uint8 checkNewPassword( void )
      542:	08 95       	ret
 
 00000544 <displayMainOptions>:
-
+/*
+ * Description:
+ * Displays main screen on LCD.
+ */
 void displayMainOptions( void )
 {
      544:	df 93       	push	r29
@@ -1141,7 +1152,10 @@ void displayMainOptions( void )
      6ee:	08 95       	ret
 
 000006f0 <requestPassword>:
-
+/*
+ * Description:
+ * Displays requesting password screen on LCD.
+ */
 void requestPassword( void )
 {
      6f0:	df 93       	push	r29
@@ -1217,7 +1231,10 @@ void requestPassword( void )
      74c:	08 95       	ret
 
 0000074e <checkPasswordLength>:
-
+ * Description:
+ * Checks length of password by sending "CONTROL_CHECK_PASSWORD_LENGTH" to controlling MCU and then
+ * sending the password.
+ */
 uint8 checkPasswordLength(uint8 length)
 {
      74e:	df 93       	push	r29
@@ -1255,7 +1272,10 @@ uint8 checkPasswordLength(uint8 length)
      786:	08 95       	ret
 
 00000788 <checkTryingPassword>:
-
+ * Description:
+ * Checks entered password with saved password on EEPROM by sending "CHECK_PASSWORD_WITH_SAVED_PASSWORD" to control MCU and then
+ * sending the password.
+ */
 uint8 checkTryingPassword( void )
 {
      788:	df 93       	push	r29
@@ -4297,7 +4317,7 @@ void UART_init( UART_ConfigType* config )
 		break;
 	}
 	
-	/* Calculate the UBRR register value according to configurations */
+	/* Calculate the UBRR register value */
 	ubrr_value = (uint16)(((F_CPU / (config->bitRate * 8UL))) - 1);
     192e:	eb 81       	ldd	r30, Y+3	; 0x03
     1930:	fc 81       	ldd	r31, Y+4	; 0x04

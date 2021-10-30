@@ -16,7 +16,6 @@
 #include "dc_motor.h"
 
 
-
 /***********************************************************************
  *              Include the other required header files                 *
  ***********************************************************************/
@@ -40,6 +39,7 @@ void DcMotor_Init(void)
 	GPIO_writePin(DCMOTOR_M1_PORT_ID, DCMOTOR_M1_PIN1_ID, LOGIC_LOW);
 	GPIO_writePin(DCMOTOR_M1_PORT_ID, DCMOTOR_M1_PIN2_ID, LOGIC_LOW);
 }
+
 
 /*
  * The function responsible for rotate the DC Motor CW/ or A-CW or

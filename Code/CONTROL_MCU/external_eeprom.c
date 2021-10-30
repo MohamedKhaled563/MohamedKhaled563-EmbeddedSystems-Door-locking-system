@@ -6,18 +6,20 @@
  *
  * Description: Source file for the External EEPROM Memory
  *
- * Author: Mohamed Tarek
+ * Author: Mohamed Khaled.
  *
  *******************************************************************************/
 #include "external_eeprom.h"
 #include "twi.h"
 #include "delay.h"
 
+
 void EEPROM_init()
 {
 	TWI_ConfigType config = { 400000, 0x01 };
 	TWI_init(&config);
 }
+
 
 uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)
 {
@@ -47,6 +49,7 @@ uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)
 	
     return SUCCESS;
 }
+
 
 uint8 EEPROM_readByte(uint16 u16addr, uint8 *u8data)
 {

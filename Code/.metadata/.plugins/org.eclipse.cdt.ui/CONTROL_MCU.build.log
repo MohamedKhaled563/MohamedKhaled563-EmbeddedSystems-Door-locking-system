@@ -1,4 +1,4 @@
-11:49:00 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
+22:18:34 **** Incremental Build of configuration Debug for project CONTROL_MCU ****
 make all 
 Invoking: Print Size
 avr-size --format=avr --mcu=atmega16 CONTROL_MCU.elf
@@ -16,5 +16,5 @@ Data:         28 bytes (2.7% Full)
 Finished building: sizedummy
  
 
-11:49:01 Build Finished. 0 errors, 0 warnings. (took 214ms)
+22:18:34 Build Finished. 0 errors, 0 warnings. (took 229ms)
 

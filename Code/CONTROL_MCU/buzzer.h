@@ -23,6 +23,7 @@
 /*******************************************************************************
  *                                Definitions                                  *
  *******************************************************************************/
+/* Static configurations. */
 #define BUZZER_PORT_ID				PORTB_ID
 #define BUZZER_PIN_ID				PIN1_ID
 
@@ -42,6 +43,7 @@ void BUZZER_Init( void );
  * Turn on buzzer.
  */
 void BUZZER_On( void );
+
 
 /*
  * Description:

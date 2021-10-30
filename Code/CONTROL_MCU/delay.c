@@ -17,11 +17,9 @@
 #include "delay.h"
 
 
-
 /***********************************************************************
  *              Include the other required header files                 *
  ***********************************************************************/
-#include "common_macros.h" /* To use macros like SET_BIT */
 #include "timer.h"
 
 

@@ -9,9 +9,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   2 .bss          0000000a  00800072  00800072  0000192c  2**0
                   ALLOC
-  3 .stab         00002694  00000000  00000000  0000192c  2**2
+  3 .stab         00002658  00000000  00000000  0000192c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00001309  00000000  00000000  00003fc0  2**0
+  4 .stabstr      00001309  00000000  00000000  00003f84  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -397,10 +397,10 @@ void delay_ms( uint32 n )
      27a:	08 95       	ret
 
 0000027c <main>:
-void openDoor( void );
-void closeDoor( void );
-void stopDoor( void );
 
+/***********************************************************************
+ *                       Functions Implementation                      *
+ ***********************************************************************/
 int main ( void )
 {
      27c:	df 93       	push	r29
@@ -413,6 +413,7 @@ int main ( void )
      28a:	de bf       	out	0x3e, r29	; 62
      28c:	0f be       	out	0x3f, r0	; 63
      28e:	cd bf       	out	0x3d, r28	; 61
+	/* Enable global interrupt. */
 	SREG |= (1<<7);
      290:	af e5       	ldi	r26, 0x5F	; 95
      292:	b0 e0       	ldi	r27, 0x00	; 0
@@ -472,6 +473,7 @@ int main ( void )
 	BUZZER_Init();
      2fa:	0e 94 49 00 	call	0x92	; 0x92 <BUZZER_Init>
 
+	/* Keep listening for HMI MCU requests. */
 	while(1)
 	{
 		UART_sendByte(CONTROL_MCU_READY);
@@ -486,10 +488,10 @@ int main ( void )
      310:	f6 cf       	rjmp	.-20     	; 0x2fe <main+0x82>
 
 00000312 <performCommand>:
-
-	return 0;
-}
-
+/*
+ * Description:
+ * This function translates the sent command to the corresponding funcition.
+ */
 void performCommand( uint8 command )
 {
      312:	df 93       	push	r29
@@ -637,7 +639,10 @@ void performCommand( uint8 command )
      3fa:	08 95       	ret
 
 000003fc <checkNewPassword>:
-
+/*
+ * Description:
+ * Checks the validity of password and re-entered password and save password if valid.
+ */
 void checkNewPassword( void )
 {
      3fc:	0f 93       	push	r16
@@ -805,7 +810,10 @@ void checkNewPassword( void )
      4da:	08 95       	ret
 
 000004dc <checkPasswordLength>:
-
+/*
+ * Description:
+ * Check the length of password and send result to HMI MCU.
+ */
 void checkPasswordLength( void )
 {
      4dc:	df 93       	push	r29
@@ -842,7 +850,10 @@ void checkPasswordLength( void )
      514:	08 95       	ret
 
 00000516 <savePassword>:
-
+/*
+ * Description:
+ * Saves the password in EEPROM and change the status of saved password to LOGIC_HIGH.
+ */
 void savePassword( uint8* const password )
 {
      516:	df 93       	push	r29
@@ -881,9 +892,9 @@ void savePassword( uint8* const password )
      552:	80 e0       	ldi	r24, 0x00	; 0
      554:	90 e0       	ldi	r25, 0x00	; 0
      556:	0e 94 e2 00 	call	0x1c4	; 0x1c4 <delay_ms>
-	UART_sendByte(length == PASSWORD_LENGTH);
-}
-
+ * Description:
+ * Saves the password in EEPROM and change the status of saved password to LOGIC_HIGH.
+ */
 void savePassword( uint8* const password )
 {
 	for(uint8 i = 0; i < PASSWORD_LENGTH; i++)
@@ -917,7 +928,10 @@ void savePassword( uint8* const password )
      586:	08 95       	ret
 
 00000588 <checkSavedPassword>:
-
+/*
+ * Description:
+ * Checks the status of saved password flag and send the result to HMI MCU using UART.
+ */
 void checkSavedPassword( void )
 {
      588:	df 93       	push	r29
@@ -948,7 +962,10 @@ void checkSavedPassword( void )
      5b6:	08 95       	ret
 
 000005b8 <eraseSavedPassword>:
-
+/*
+ * Description:
+ * Erases the EEPROM password by erasing the flag that keeps status either there is a saved password or not.
+ */
 void eraseSavedPassword( void )
 {
      5b8:	df 93       	push	r29
@@ -972,7 +989,10 @@ void eraseSavedPassword( void )
      5da:	08 95       	ret
 
 000005dc <checkPassword>:
-
+ * Description:
+ * This function is executed when the HMI controller sends CHECK_PASSWORD_WITH_SAVED_PASSWORD command.
+ * It receives password using UART and compare it with saved password in EEPROM.
+ */
 void checkPassword( void )
 {
      5dc:	0f 93       	push	r16
@@ -1132,7 +1152,10 @@ void checkPassword( void )
      6b6:	08 95       	ret
 
 000006b8 <openDoor>:
-
+/*
+ * Description:
+ * Turns the motor clock wise.
+ */
 void openDoor( void )
 {
      6b8:	df 93       	push	r29
@@ -1148,6 +1171,10 @@ void openDoor( void )
      6ca:	08 95       	ret
 
 000006cc <closeDoor>:
+/*
+ * Description:
+ * Turns the motor anti clock wise.
+ */
 void closeDoor( void )
 {
      6cc:	df 93       	push	r29
@@ -1163,6 +1190,10 @@ void closeDoor( void )
      6de:	08 95       	ret
 
 000006e0 <stopDoor>:
+/*
+ * Description:
+ * Stops the motor.
+ */
 void stopDoor( void )
 {
      6e0:	df 93       	push	r29
@@ -1178,9 +1209,9 @@ void stopDoor( void )
      6f2:	08 95       	ret
 
 000006f4 <EEPROM_init>:
-#include "external_eeprom.h"
 #include "twi.h"
 #include "delay.h"
+
 
 void EEPROM_init()
 {
@@ -1243,6 +1274,7 @@ void EEPROM_init()
      760:	08 95       	ret
 
 00000762 <EEPROM_writeByte>:
+
 
 uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)
 {
@@ -1330,6 +1362,7 @@ uint8 EEPROM_writeByte(uint16 u16addr, uint8 u8data)
      7e2:	08 95       	ret
 
 000007e4 <EEPROM_readByte>:
+
 
 uint8 EEPROM_readByte(uint16 u16addr, uint8 *u8data)
 {

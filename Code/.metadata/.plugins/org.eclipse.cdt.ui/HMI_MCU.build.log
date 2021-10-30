@@ -1,9 +1,9 @@
-11:49:01 **** Incremental Build of configuration Debug for project HMI_MCU ****
+22:18:34 **** Incremental Build of configuration Debug for project HMI_MCU ****
 make all 
 Building file: ../door_locking_hmi.c
 Invoking: AVR Compiler
 avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"door_locking_hmi.d" -MT"door_locking_hmi.o" -c -o "door_locking_hmi.o" "../door_locking_hmi.c"
-../door_locking_hmi.c:12:1: warning: "F_CPU" redefined
+../door_locking_hmi.c:16:1: warning: "F_CPU" redefined
 <command-line>: warning: this is the location of the previous definition
 Finished building: ../door_locking_hmi.c
  
@@ -32,5 +32,5 @@ Data:        225 bytes (22.0% Full)
 Finished building: sizedummy
  
 
-11:49:01 Build Finished. 0 errors, 1 warnings. (took 518ms)
+22:18:35 Build Finished. 0 errors, 1 warnings. (took 577ms)
 

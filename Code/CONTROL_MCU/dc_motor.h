@@ -50,6 +50,7 @@ typedef enum
  */
 void DcMotor_Init(void);
 
+
 /*
  * The function responsible for rotate the DC Motor CW/ or A-CW or
  * stop the motor based on the state input state value.

@@ -6,7 +6,7 @@
  *
  * Description: Source file for the Keypad driver
  *
- * Author: Mohamed Tarek
+ * Author: Mohamed Khaled.
  *
  *******************************************************************************/
 #include "common_macros.h" /* To use the macros like SET_BIT */

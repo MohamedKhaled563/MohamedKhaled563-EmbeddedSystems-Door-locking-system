@@ -6,23 +6,19 @@
  *
  * Description: Source file for AVR TIMER driver.
  *
- * Author: Mohamed Khaled
+ * Author: Mohamed Khaled.
  *
  */
-
-
 /***********************************************************************
  *                      Include Module header file                      *
  ***********************************************************************/
 #include "timer.h"
 
 
-
 /***********************************************************************
  *              Include the other required header files                 *
  ***********************************************************************/
 #include <avr/io.h> /* To use IO registers */
-#include "common_macros.h" /* To use macros like SET_BIT */
 #include <avr/interrupt.h>
 
 
@@ -47,13 +43,6 @@ static volatile void (*g_timer1CallBackPtr)(void) = NULL_PTR;
  * that can be used in any mode of timer2 (overflow or compare)
  */
 static volatile void (*g_timer2CallBackPtr)(void) = NULL_PTR;
-
-
-/***********************************************************************
- *                      Local Functions Prototypes                      *
- ***********************************************************************/
-
-
 
 
 /***********************************************************************
