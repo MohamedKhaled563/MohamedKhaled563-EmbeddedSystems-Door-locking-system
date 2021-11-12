@@ -206,7 +206,7 @@ ISR( TIMER0_OVF_vect )
 	{
 		(*g_timer0CallBackPtr)();
 	}
-	TIFR |= TOV0;
+	TIFR |= (1<<TOV0);
 }
 /*
  * Description:
@@ -218,7 +218,7 @@ ISR( TIMER0_COMP_vect )
 	{
 		(*g_timer0CallBackPtr)();
 	}
-	TIFR |= OCF0;
+	TIFR |= (1<<OCF0);
 }
 /*
  * Description:
@@ -230,7 +230,7 @@ ISR( TIMER1_OVF_vect )
 	{
 		(*g_timer1CallBackPtr)();
 	}
-	TIFR |= TOV1;
+	TIFR |= (1<<TOV1);
 }
 /*
  * Description:
@@ -242,7 +242,7 @@ ISR( TIMER1_COMPA_vect )
 	{
 		(*g_timer1CallBackPtr)();
 	}
-	TIFR |= OCF1A;
+	TIFR |= (1<<OCF1A);
 }
 /*
  * Description:
@@ -254,7 +254,7 @@ ISR( TIMER2_OVF_vect )
 	{
 		(*g_timer2CallBackPtr)();
 	}
-	TIFR |= TOV2;
+	TIFR |= (1<<TOV2);
 }
 /*
  * Description:
@@ -266,5 +266,5 @@ ISR( TIMER2_COMP_vect )
 	{
 		(*g_timer2CallBackPtr)();
 	}
-	TIFR |= OCF2;
+	TIFR |= (1<<OCF2);
 }
